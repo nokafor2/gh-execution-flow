@@ -33,8 +33,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test code
+        # Add an id field to be able to reference the data
+        id: run-tests
         run: npm run test
       - name: Upload test report
+        # Using the if contition can the optional to use ${{  }}
+        # check if the Test code failed
+        if: steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
