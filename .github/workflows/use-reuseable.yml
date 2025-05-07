@@ -79,6 +79,9 @@ jobs:
     # Set the path to the workflow
     # use the "uses" keyword in the job level to reuse a workflow
     uses: ./.github/workflows/reuseable.yml
+    # Specify the input for the artifact that is called
+    with:
+      artifact-name: dist-files
   # Practice on using conditionals
   # Run this job, if someother job fails
   report:
