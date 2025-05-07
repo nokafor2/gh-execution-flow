@@ -82,6 +82,17 @@ jobs:
     # Specify the input for the artifact that is called
     with:
       artifact-name: dist-files
+    # secrets:
+    #   some-secret: ${{ secrets.some-secret }}
+  
+  # To use the output of the reuseable workflow define it in another job
+  print-deploy-result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy output
+        run: echo "${{ needs.deploy.outputs.result }}"
+  
   # Practice on using conditionals
   # Run this job, if someother job fails
   report:
