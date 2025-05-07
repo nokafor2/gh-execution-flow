@@ -2,6 +2,8 @@ name: Matrix Demo
 on: push
 jobs:
   build:
+    # Instructs to continue with errors that may exist even if some jobs or combination fails
+    continue-on-error: true
     # With matrix you can run a job on different configurations
     # Use "strategy" to apply matrix
     strategy:
