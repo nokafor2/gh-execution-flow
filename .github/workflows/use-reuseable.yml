@@ -78,7 +78,7 @@ jobs:
     # Reusing an entire workflow
     # Set the path to the workflow
     # use the "uses" keyword in the job level to reuse a workflow
-    uses: ./.github/workflow/reuseable.yml
+    uses: ./.github/workflows/reuseable.yml
   # Practice on using conditionals
   # Run this job, if someother job fails
   report:
