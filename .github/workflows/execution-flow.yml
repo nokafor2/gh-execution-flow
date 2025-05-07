@@ -15,7 +15,10 @@ jobs:
         with:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+        # skip install dependencies of successfully used cache
       - name: Install dependencies
+        # This output is the output of the cache action
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Lint code
         run: npm run lint
@@ -31,6 +34,8 @@ jobs:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        # This output is the output of the cache action
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Test code
         # Add an id field to be able to reference the data
@@ -57,6 +62,8 @@ jobs:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        # This output is the output of the cache action
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build website
         id: build-website
