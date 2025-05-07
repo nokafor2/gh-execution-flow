@@ -81,6 +81,8 @@ jobs:
   # Practice on using conditionals
   # Run this job, if someother job fails
   report:
+    # This would delay the execution of this job, and wait for the listed job to through an error
+    needs: [lint, deploy]
     # failure() would return true, if anyother job fails
     if: failure()
     runs-on: ubuntu-latest
