@@ -1,0 +1,10 @@
+name: Reuseable Deploy
+# For a workflow to be reuseable, it must be callable by other workflow
+# workflow_call event allows a workflow to be able to be called from other workflows
+on: workflow_call
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: echo "Deploying & uploading..."
