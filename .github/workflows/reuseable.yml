@@ -1,10 +1,24 @@
 name: Reuseable Deploy
 # For a workflow to be reuseable, it must be callable by other workflow
 # workflow_call event allows a workflow to be able to be called from other workflows
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      artifact-name:
+        description: The name of the deployable artifact files
+        required: false
+        default: dist
+        type: string
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Code
+        uses: actions/download-artifact@v4
+        with:
+          # create a dynamic artifact where the value can be parsed in
+          name: ${{ inputs.artifact-name }}
+      - name: List files
+        run: ls
       - name: Output information
         run: echo "Deploying & uploading..."
