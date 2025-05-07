@@ -10,6 +10,14 @@ jobs:
       matrix:
         node-version: [12, 14, 16]
         operating-system: [ubuntu-latest, windows-latest]
+        # Using "include" can help in specifing combinations of keys to run from the matrix
+        include:
+          - node-version: 18
+            operating-system: ubuntu-latest
+        # The "exclude" key is used to omit some combinations
+        exclude:
+          - node-version: 12
+            operating-system: ubuntu-latest
     # U can set the runner dynamically using your matrix
     # This would make the build job run multiple times for the different operating system in the matrix
     runs-on: ${{ matrix.operating-system }}
